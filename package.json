@@ -1,22 +1,18 @@
 {
-  "name": "electron-quick-start",
+  "name": "evidences",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "evidences",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/noobandy/evidences",
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "evidences"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "Anand Mohan",
   "devDependencies": {
+    "devtron": "^1.4.0",
     "electron": "~1.7.8"
   }
 }

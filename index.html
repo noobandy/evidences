@@ -3,15 +3,20 @@
   <head>
     <meta charset="UTF-8">
     <title>Evidences</title>
+    <style>
+      button {
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
     <div class="cameraContainer">
       <video id="webcamVideo" autoplay="true" height="200px" width="200px"></video>
       <div class="cameraControls">
-          <button id="startBtn">
+          <button type="button" id="startBtn">
               Start
           </button>
-          <button id="stopBtn">
+          <button type="button" id="stopBtn">
               Stop
           </button>
       </div>
