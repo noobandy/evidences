@@ -118,3 +118,32 @@ ipcRenderer.on("windowPositioned", function() {
 ipcRenderer.on("windowRestored", function() {
     console.log("window restored")
 })
+
+
+const webview = document.getElementById('foo')
+
+webview.addEventListener('dom-ready', () => {\
+    alert("dom ready, checking devices")
+    webview.send("ping")
+})
+      
+      webview.addEventListener('ipc-message', (event) => {
+        // console.log(event.channel)
+        // Prints "pong"
+        alert(event.channel, event.data)
+      })
+
+ipcRenderer.on("fromWebView", function(event) {
+    alert("in host")
+    Promise.all([navigator.mediaDevices.getUserMedia(webcamOptions), 
+        navigator.mediaDevices.getUserMedia(microphoneOptions)])
+        .then(function(streams) {
+            console.log("got streams")
+            ipcRenderer.sendToHost("toWebView", true);
+        })
+        .catch(function(err) {
+            console.log(err)
+            ipcRenderer.sendToHost("toWebView", false);
+        })
+   
+})
