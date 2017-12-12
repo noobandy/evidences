@@ -122,28 +122,21 @@ ipcRenderer.on("windowRestored", function() {
 
 const webview = document.getElementById('foo')
 
-webview.addEventListener('dom-ready', () => {\
-    alert("dom ready, checking devices")
-    webview.send("ping")
-})
-      
-      webview.addEventListener('ipc-message', (event) => {
-        // console.log(event.channel)
+webview.addEventListener('ipc-message', (event) => {
+    // console.log(event.channel)
         // Prints "pong"
-        alert(event.channel, event.data)
-      })
-
-ipcRenderer.on("fromWebView", function(event) {
-    alert("in host")
-    Promise.all([navigator.mediaDevices.getUserMedia(webcamOptions), 
-        navigator.mediaDevices.getUserMedia(microphoneOptions)])
-        .then(function(streams) {
-            console.log("got streams")
-            ipcRenderer.sendToHost("toWebView", true);
-        })
-        .catch(function(err) {
-            console.log(err)
-            ipcRenderer.sendToHost("toWebView", false);
-        })
-   
+        // alert(event.channel, event.data)
+        Promise.all([navigator.mediaDevices.getUserMedia(webcamOptions), 
+            navigator.mediaDevices.getUserMedia(microphoneOptions)])
+            .then(function(streams) {
+                streams.forEach(function(stream) {
+                    stream.getTracks().forEach(function(track) {
+                        track.stop()
+                    })
+                })
+                webview.send("audioVideoStatusAvailable", {audio: true, video: true})
+            })
+            .catch(function(err) {
+                console.log(err)
+            })
 })

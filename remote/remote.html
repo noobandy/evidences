@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Remote</title>
+</head>
+<body>
+    <h4>Remote page</h4>
+    <button id="audioVideoBtn" type="button">
+        Check Audio Video
+    </button>
+    <script>
+        var audioVideoBtn = document.getElementById("audioVideoBtn")
+        audioVideoBtn.addEventListener("click", function(e) {
+            hasAudioViedo().then(function(data) {
+                alert(`audio : ${data.audio}, video: ${data.video}`)
+            }).catch(function(err) {
+                alert(`Error: ${err}`)
+            })
+        })
+    </script>
+</body>
+</html>
